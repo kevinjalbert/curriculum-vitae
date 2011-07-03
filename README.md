@@ -8,6 +8,8 @@
 
 This LaTeX file was created to provide an easy and expandable Curriculum vitae (CV) template. There is a section for the personal details, which are used to create the title of the CV. There exist helper commands that act like functions to produce formated entries. To add a new entry it becomes a simple matter of providing the new information, the formatting is already handled. In situation where a new format is desired it is quite easy to create a new helper command. There is bookmark support as well for each section created.
 
+[_Example CV made with this template_](http://kevinjalbert.com/public/files/misc/kevin-jalbert-cv.pdf "kevin-jalbert-cv")
+
 #Pre-Requirements
 
 This program takes advantage of [LaTeX](http://www.latex-project.org/ "LaTeX") / [pdfLaTeX](http://www.tug.org/applications/pdftex/ "pdfLaTeX")
