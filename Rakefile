@@ -16,12 +16,12 @@ task :dvi do
   system 'latex --output-directory ./src ./src/*.tex'
 end
 
-desc "Compiles the CV using pdfLatex"
+desc "Compiles the CV using pdflatex"
 task :pdf do
   system 'pdflatex --output-directory ./src ./src/*.tex'
 end
 
-desc "Compiles the CV using latex and pdfLatex"
+desc "Compiles the CV using latex and pdflatex"
 task :all do
   system 'pdflatex --output-directory ./src ./src/*.tex'
   system 'latex --output-directory ./src ./src/*.tex'
