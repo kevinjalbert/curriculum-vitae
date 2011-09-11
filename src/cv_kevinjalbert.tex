@@ -3,7 +3,7 @@
 % Email: kevin.j.jalbert@gmail.com
 % Website: http://kevinjalbert.com
 % Repository: https://github.com/kevinjalbert/cv_kevinjalbert
-% Version: 1.0.0
+% Version: 1.1.0
 % Info: This CV is built in such a manner that it becomes quite easy to add
 %       new sections and entries to each section. There are PDF bookmarks for
 %       each section as well.
@@ -68,7 +68,7 @@
 % [1]: null
 %
 \newcommand{\putAddress}[1]{
-  19 Niagara Drive, Unit 25, L1G 8G2
+  292 Orange Cres, L1G 5X3
 }
 
 % putRegion(newcommand)
@@ -180,13 +180,15 @@
 % [3]: Degree/diploma
 % [4]: Start date
 % [5]: End date
-% [6]: Note/comment
+% [6]: Note/comment (optional)
 %
 \newcommand{\educationEntry}[6]{
   \begin{blockIndent}{}
     #1 \hfill #2 \\
     \textbf{#3} \hfill #4 -- #5 \\
-    #6 \\
+    \ifthenelse{
+      \equal{#6} {}}
+      {} {#6 \\}
   \end{blockIndent}
 }
 
@@ -207,7 +209,29 @@
     \textbf{#1}, #2 \hfill #3 \\
     #4 \hfill #5 -- #6 \\
     #7 \\
-    \textit{#8 :} #9 \\
+    \textit{#8:} #9 \\
+  \end{blockIndent}
+}
+
+% teachingEntry(newcommand)
+% Displays an entry about the user's teaching experiences.
+% [1]: Position's title
+% [2]: University/College's name
+% [3]: Region
+% [4]: Course code
+% [5]: Start date
+% [6]: End date
+% [7]: Course title
+% [8]: Course description (optional)
+%
+\newcommand{\teachingEntry}[8]{
+  \begin{blockIndent}{}
+    \textbf{#1}, #2 \hfill #3 \\
+    Course Code: #4 \hfill #5 -- #6 \\
+    \textit{#7} \\ 
+    \ifthenelse{
+      \equal{#8} {}}
+      {} {Responsibilities: #8 \\}
   \end{blockIndent}
 }
 
@@ -217,12 +241,14 @@
 % [2]: Institution's name where it was received
 % [3]: Start date
 % [4]: End date
-% [5]: Notes/description
+% [5]: Notes/description (optional)
 %
 \newcommand{\academicAwardsEntry}[5]{
   \begin{blockIndent}{}
     \textbf{#1}, #2 \hfill #3 -- #4 \\
-    #5 \\
+    \ifthenelse{
+      \equal{#5} {}}
+      {} {#5 \\}
   \end{blockIndent}
 }
 
@@ -335,7 +361,7 @@
   \section{Research Experience}
 
   \researchEntry
-    {\href{http://sqrg.com/}{\textbf{Software Quality Research Group}}}
+    {\href{http://sqrg.ca/}{\textbf{Software Quality Research Group}}}
     {\href{http://www.uoit.ca/}{UOIT}}
     {Oshawa, Ontario, Canada}
     {Graduate Research Assistant}
@@ -346,7 +372,7 @@
     {Working on research projects related to Concurrency, Model Checking and Software Metrics.}
 
   \researchEntry
-    {\href{http://faculty.uoit.ca/bradbury/sqrg/}{\textbf{Software Quality Research Group}}}
+    {\href{http://sqrg.ca/}{\textbf{Software Quality Research Group}}}
     {\href{http://www.uoit.ca/}{UOIT}}
     {Oshawa, Ontario, Canada}
     {Undergraduate Research Assistant}
@@ -360,12 +386,59 @@
     {\href{http://sqrg.ca/}{\textbf{Software Quality Research Group}}}
     {\href{http://www.uoit.ca/}{UOIT}}
     {Oshawa, Ontario, Canada}
-    {Graduate Research Assistant}
+    {Undergraduate Research Assistant}
     {May 2009}
     {Aug. 2009}
     {Supervisor: Dr. Jeremy S. Bradbury}
     {Using Clone Detection to Identify Bugs in Concurrent Software}
     {This research project focuses on the development of a new approach for regression testing concurrent Java programs using clone detection of bug patterns.}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%
+  %% TEACHING EXPERIENCE %%
+  %%%%%%%%%%%%%%%%%%%%%%%%%
+  % The user's research experience is displayed here.
+  %
+  \section{Teaching Experience}
+
+  \teachingEntry
+    {Teaching Assistant}
+    {\href{http://www.uoit.ca/}{UOIT}}
+    {Oshawa, Ontario, Canada}
+    {CSCI 1030U \textit{(Two Section)}}
+    {Sep. 2011}
+    {Dec. 2011}
+    {Introduction to Computer Science}
+    {Introduced the basic concepts of computer science as well as providing an introduction to computer programming.}
+
+  \teachingEntry
+    {Teaching Assistant}
+    {\href{http://www.uoit.ca/}{UOIT}}
+    {Oshawa, Ontario, Canada}
+    {CSCI 2030U \textit{(Two Section)}}
+    {Jan. 2010}
+    {Apr. 2010}
+    {Programming Workshop}
+    {Introduced modern concepts in program design and construction along with advanced features of modern object oriented programming languages.}
+
+  \teachingEntry
+    {Teaching Assistant}
+    {\href{http://www.uoit.ca/}{UOIT}}
+    {Oshawa, Ontario, Canada}
+    {CSCI 2010U \textit{(One Section)}}
+    {Sep. 2010}
+    {Dec. 2010}
+    {Principles of Computer Science}
+    {Introduced students to general computer programming principles and the analysis of algorithms and data structures.}
+
+  \teachingEntry
+    {Teaching Assistant}
+    {\href{http://www.uoit.ca/}{UOIT}}
+    {Oshawa, Ontario, Canada}
+    {CSCI 3040U \textit{(One Section)}}
+    {Sep. 2010}
+    {Dec. 2010}
+    {Software Engineering I: Requirements, Design and Analysis}
+    {Introduced students to the development of software systems including systems that consist of multiple programs with long life cycles.}
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   %% ACADEMIC HONORS & AWARDS %%
@@ -382,6 +455,13 @@
     {Scholarship for graduate studies in Ontario. Only 3000 recipients.}
 
   \academicAwardsEntry
+    {Dean's Graduate Scholarship -- Master’s Level}
+    {\href{http://uoit.ca/}{UOIT}}
+    {Sep. 2011}
+    {Sep. 2012}
+    {Scholarship for graduate studies at UOIT. Recipients must have at least an 3.7 GPA.}
+
+  \academicAwardsEntry
     {\href{http://gradstudies.uoit.ca/test/EN/main/future\_students/awards\_and\_funding/external\_awards/OGSInstitutional.html}{OGS - Institutional Competition}}
     {\href{http://uoit.ca/}{UOIT}}
     {Sep. 2010}
@@ -389,24 +469,24 @@
     {Scholarship for graduate studies at UOIT. Only 10 recipients.}
 
   \academicAwardsEntry
-    {\href{https://osap.gov.on.ca/OSAPPortal/en/A-ZListofAid/TCONT003465.html}{OGS - External Competition}}
+    {Dean's Graduate Scholarship -- Master’s Level}
     {\href{http://uoit.ca/}{UOIT}}
     {Sep. 2010}
     {Sep. 2011}
     {Scholarship for graduate studies at UOIT. Recipients must have at least an 3.7 GPA.}
 
   \academicAwardsEntry
-    {\href{http://nserc-crsng.gc.ca/Students-Etudiants/UG-PC/USRA-BRPC\_eng.asp}{NSERC - Undergraduate Student Research Award}}
+    {\href{http://www.nserc-crsng.gc.ca/students-etudiants/ug-pc/usra-brpc_eng.asp}{NSERC -- Undergraduate Student Research Award}}
     {\href{http://uoit.ca/}{UOIT}}
     {May 2010}
     {Aug. 2010}
     {Funding for undergraduate summer research at UOIT. Only 14 recipients at UOIT.}
 
   \academicAwardsEntry
-    {\href{http://nserc-crsng.gc.ca/Students-Etudiants/UG-PC/USRA-BRPC\_eng.asp}{NSERC - Undergraduate Student Research Award}}
+    {\href{http://www.nserc-crsng.gc.ca/students-etudiants/ug-pc/usra-brpc_eng.asp}{NSERC -- Undergraduate Student Research Award}}
     {\href{http://uoit.ca/}{UOIT}}
     {May 2009}
-    {Aug 2009}
+    {Aug. 2009}
     {Funding for undergraduate summer research at UOIT. Only 14 recipients at UOIT.}
 
   \academicAwardsEntry
@@ -414,7 +494,7 @@
     {\href{http://uoit.ca/}{UOIT}}
     {Sep. 2008}
     {Apr. 2011}
-    {For attaining a semester GPA of at least 3.80/4.30.}
+    {For attaining a semester GPA of at least 3.80/4.30 during a undergradate degree.}
 
   %%%%%%%%%%%%%%%%%%
   %% PUBLICATIONS %%
