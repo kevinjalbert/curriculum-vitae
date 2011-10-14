@@ -261,6 +261,7 @@
 % [5]: Region
 % [6]: Date
 % [7]: PDF/website url (optional)
+%
 \newcommand{\publicationEntry}[7]{
   \begin{blockIndent}{}
     #1.
@@ -279,6 +280,7 @@
 % [4]: Region
 % [5]: Date
 % [6]: PDF/website url (optional)
+%
 \newcommand{\posterEntry}[6]{
   \begin{blockIndent}{}
     #1.
@@ -297,6 +299,7 @@
 % [4]: Date
 % [5]: Topic
 % [6]: PDF/website url (optional)
+%
 \newcommand{\presentationEntry}[6]{
   \begin{blockIndent}{}
     \ifthenelse{
@@ -304,6 +307,21 @@
       {\textsc{#1}} {\href{#6}{\textsc{#1}}} \hfill #3 \\
     Event: #2 \hfill #4 \\
     Summary: #5 \\
+  \end{blockIndent}
+}
+
+% organizationInvolvementEntry(newcommand)
+% Displays an entry about the user's involvement in an organization.
+% [1]: Organization title
+% [2]: Position title
+% [3]: Website url (optional)
+%
+\newcommand{\organizationInvolvementEntry}[3]{
+  \begin{blockIndent}{}
+    \ifthenelse{
+      \equal{#3} {}}
+      {\textsc{#1}} {\href{#3}{\textsc{#1}}} \\
+    Role: #2 \\
   \end{blockIndent}
 }
 
@@ -610,6 +628,23 @@
     {Detailed and demostrated an Eclipse plugin for testing multi--threaded Java programs}
     {http://wiki.eclipse.org/Eclipse_DemoCamps_Indigo_2011/Toronto}
 
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% ORGANIZATION INVOLVEMENTS %%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % The user's organization involvements are displayed here.
+  %
+  \section{Organization Involvements}
+
+  \organizationInvolvementEntry
+    {2011 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
+    {Poster Session Co-organizer}
+    {}
+
+  \organizationInvolvementEntry
+    {Symposium on Search Based Software Engineering (SSBSE 2011)}
+    {Sub-Reviewer}
+    {http://www.ssbse.org/2011/}
+    
   %%%%%%%%%%%%%%%%%%%%%%%%%%%
   %% PROGRAMMING LANGUAGES %%
   %%%%%%%%%%%%%%%%%%%%%%%%%%%
