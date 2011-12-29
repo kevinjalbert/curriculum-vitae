@@ -3,7 +3,7 @@
 % Email: kevin.j.jalbert@gmail.com
 % Website: http://kevinjalbert.com
 % Repository: https://github.com/kevinjalbert/cv_kevinjalbert
-% Version: 1.1.0
+% Version: 1.2.0
 % Info: This CV is built in such a manner that it becomes quite easy to add
 %       new sections and entries to each section. There are PDF bookmarks for
 %       each section as well.
@@ -121,8 +121,8 @@
 %
 \newenvironment{blockIndent}[1]{
   \begin{indenter}{}
-    \setlength{\parindent}{1cm}
-    \hangindent=1cm
+    \setlength{\parindent}{0.25cm}
+    \hangindent=0.25cm
 }{\end{indenter}}
 
 % putContact(newcommand)
@@ -145,7 +145,7 @@
 \newcommand{\putTitle}[1]{
   \normalsize
   \pdfbookmark{Curriculum Vitae}{Curriculum Vitae}{
-    \hspace{-3.5mm} \textsc{\Huge{\putName{}} \hfill \LARGE{\putWebsite{}}}\\
+    \hspace{-0.5cm} \textsc{\Huge{\putName{}} \hfill \LARGE{\putWebsite{}}}\\
   }
   \putContact{}
   \hrule
@@ -184,12 +184,21 @@
 %
 \newcommand{\educationEntry}[6]{
   \begin{blockIndent}{}
-    #1 \hfill #2 \\
-    \textbf{#3} \hfill #4 -- #5 \\
-    \ifthenelse{
-      \equal{#6} {}}
-      {} {#6 \\}
+    \begin{minipage}[t]{0.645\linewidth}
+      \raggedright
+      #1 \\
+      \textbf{#3} \\
+      \ifthenelse{
+        \equal{#6} {}}
+        {} {#6 \\}
+    \end{minipage}
+    \begin{minipage}[t]{0.335\linewidth}
+      \raggedleft
+      #2 \\
+      #4 -- #5 \\
+    \end{minipage}
   \end{blockIndent}
+  \vspace{0.5cm}
 }
 
 % researchEntry(newcommand)
@@ -206,11 +215,20 @@
 %
 \newcommand{\researchEntry}[9]{
   \begin{blockIndent}{}
-    \textbf{#1}, #2 \hfill #3 \\
-    #4 \hfill #5 -- #6 \\
-    #7 \\
-    \textit{#8:} #9 \\
+    \begin{minipage}[t]{0.645\linewidth}
+      \raggedright
+      \textbf{#1}, #2 \\
+      #4 \\
+      #7 \\
+      \textit{#8:} #9
+    \end{minipage}
+    \begin{minipage}[t]{0.335\linewidth}
+      \raggedleft
+      #3 \\
+      #5 -- #6
+    \end{minipage}
   \end{blockIndent}
+  \vspace{0.5cm}
 }
 
 % teachingEntry(newcommand)
@@ -226,13 +244,22 @@
 %
 \newcommand{\teachingEntry}[8]{
   \begin{blockIndent}{}
-    \textbf{#1}, #2 \hfill #3 \\
-    Course Code: #4 \hfill #5 -- #6 \\
-    \textit{#7} \\ 
-    \ifthenelse{
-      \equal{#8} {}}
-      {} {Responsibilities: #8 \\}
+    \begin{minipage}[t]{0.645\linewidth}
+      \raggedright
+      \textbf{#1}, #2 \\
+      Course Code: #4 \\
+      \textit{#7} \\
+      \ifthenelse{
+        \equal{#8} {}}
+        {} {Responsibilities: #8 \\}
+    \end{minipage}
+    \begin{minipage}[t]{0.335\linewidth}
+      \raggedleft
+      #3 \\
+      #5 -- #6 \\
+    \end{minipage}
   \end{blockIndent}
+  \vspace{0.5cm}
 }
 
 % academicAwardsEntry(newcommand)
@@ -245,11 +272,19 @@
 %
 \newcommand{\academicAwardsEntry}[5]{
   \begin{blockIndent}{}
-    \textbf{#1}, #2 \hfill #3 -- #4 \\
-    \ifthenelse{
-      \equal{#5} {}}
-      {} {#5 \\}
+    \begin{minipage}[t]{0.645\linewidth}
+      \raggedright
+      \textbf{#1}, #2 \\
+      \ifthenelse{
+        \equal{#5} {}}
+        {} {#5 \\}
+    \end{minipage}
+    \begin{minipage}[t]{0.335\linewidth}
+    \raggedleft
+      #3 -- #4
+    \end{minipage}
   \end{blockIndent}
+  \vspace{0.5cm}
 }
 
 % publicationEntry(newcommand)
@@ -302,27 +337,46 @@
 %
 \newcommand{\presentationEntry}[6]{
   \begin{blockIndent}{}
-    \ifthenelse{
-      \equal{#6} {}}
-      {\textsc{#1}} {\href{#6}{\textsc{#1}}} \hfill #3 \\
-    Event: #2 \hfill #4 \\
-    Summary: #5 \\
+    \begin{minipage}[t]{0.645\linewidth}
+      \raggedright
+      \ifthenelse{
+        \equal{#6} {}}
+        {\textsc{#1}} {\href{#6}{\textsc{#1}}} \\
+      Event: #2 \\
+      Summary: #5
+    \end{minipage}
+    \begin{minipage}[t]{0.335\linewidth}
+      \raggedleft
+      #3 \\
+      #4
+    \end{minipage}
   \end{blockIndent}
+  \vspace{0.5cm}
 }
 
 % organizationInvolvementEntry(newcommand)
 % Displays an entry about the user's involvement in an organization.
 % [1]: Organization title
 % [2]: Position title
-% [3]: Website url (optional)
+% [3]: Start date
+% [4]: End date
+% [5]: Website url (optional)
 %
-\newcommand{\organizationInvolvementEntry}[3]{
+\newcommand{\organizationInvolvementEntry}[5]{
   \begin{blockIndent}{}
-    \ifthenelse{
-      \equal{#3} {}}
-      {\textsc{#1}} {\href{#3}{\textsc{#1}}} \\
-    Role: #2 \\
+    \begin{minipage}[t]{0.645\linewidth}
+      \raggedright
+      \ifthenelse{
+        \equal{#5} {}}
+        {\textsc{#1}} {\href{#5}{\textsc{#1}}} \\
+      Role: #2
+    \end{minipage}
+    \begin{minipage}[t]{0.335\linewidth}
+      \raggedleft
+      #3 -- #4
+    \end{minipage}
   \end{blockIndent}
+  \vspace{0.5cm}
 }
 
 % skillEntry(newcommand)
@@ -451,8 +505,8 @@
     {\href{http://www.uoit.ca/}{UOIT}}
     {Oshawa, Ontario, Canada}
     {CSCI 2030U \textit{(Two Section)}}
-    {Jan. 2010}
-    {Apr. 2010}
+    {Jan. 2011}
+    {Apr. 2011}
     {Programming Workshop}
     {Introduced modern concepts in program design and construction along with advanced features of modern object oriented programming languages.}
 
@@ -530,7 +584,7 @@
     {\href{http://uoit.ca/}{UOIT}}
     {Sep. 2008}
     {Apr. 2011}
-    {For attaining a semester GPA of at least 3.80/4.30 during a undergradate degree.}
+    {For attaining a semester GPA of at least 3.80/4.30 during a undergraduate degree.}
 
   %%%%%%%%%%%%%%%%%%
   %% PUBLICATIONS %%
@@ -572,6 +626,22 @@
   % The user's posters are displayed here.
   %
   \section{Posters}
+
+  \posterEntry
+    {\textbf{Kevin Jalbert}, Cody-James LeBlanc, Christopher Forbes, Ramiro Liscano and Jeremy S. Bradbury}
+    {Eclipticon: Eclipse Plugin for Concurrency Testing (\textbf{Best Poster Award})}
+    {In 2011 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
+    {Markham, Ontario, Canada}
+    {Nov. 2011}
+    {}
+
+  \posterEntry
+    {\textbf{Kevin Jalbert}, David Kelk and Jeremy S. Bradbury}
+    {ARC: Automatic Repair of Java Concurrency Bugs}
+    {In 2011 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
+    {Markham, Ontario, Canada}
+    {Nov. 2011}
+    {}
 
   \posterEntry
     {\textbf{Kevin Jalbert} and Jeremy S. Bradbury}
@@ -621,11 +691,19 @@
   \section{Presentations}
 
   \presentationEntry
+    {ARC: Automatic Repair of Concurrency Bugs}
+    {In 2011 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
+    {Markham, Ontario, Canada}
+    {Nov. 2011}
+    {Discussed a technique to automatically repair concurrency bugs in Java programs}
+    {}
+
+  \presentationEntry
     {Eclipticon}
     {Eclipse DemoCamps 2011/Toronto}
     {Toronto, Ontario, Canada}
     {Jun. 2011}
-    {Detailed and demostrated an Eclipse plugin for testing multi--threaded Java programs}
+    {Detailed and demonstrated an Eclipse plugin for testing multi--threaded Java programs}
     {http://wiki.eclipse.org/Eclipse_DemoCamps_Indigo_2011/Toronto}
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -638,13 +716,17 @@
   \organizationInvolvementEntry
     {2011 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
     {Poster Session Co-organizer}
+    {Oct. 2011}
+    {Nov. 2011}
     {}
 
   \organizationInvolvementEntry
     {Symposium on Search Based Software Engineering (SSBSE 2011)}
     {Sub-Reviewer}
+    {May. 2011}
+    {Jun. 2011}
     {http://www.ssbse.org/2011/}
-    
+
   %%%%%%%%%%%%%%%%%%%%%%%%%%%
   %% PROGRAMMING LANGUAGES %%
   %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -653,12 +735,12 @@
   \section{Programming Languages}
 
   % Simple version without the comfort graphs
-  \hide{
+  %\hide{
     \generalEntry{Bash, C\#, C++, Java, \LaTeX, Python, Ruby, Visual Basic}
-  }
+  %}
 
   % Detailed version with skill level information
-  %\hide{
+  \hide{
     \generalEntry{\scriptsize{The following represent the skill set I have and my personal comfort level of using that skill} \\}
     \skillEntry{Bash}{7}
     \skillEntry{C\#}{8}
@@ -668,22 +750,22 @@
     \skillEntry{Python}{8}
     \skillEntry{Ruby}{7}
     \skillEntry{Visual Basic}{8}
-  %}
+  }
 
   %%%%%%%%%%%%%%%%%%%%%
   %% SOFTWARE SKILLS %%
   %%%%%%%%%%%%%%%%%%%%%
   % The user's software skills and comfort levels are displayed here.
   %
-  \section{Software Skills}{Software Skills}
+  \section{Software Skills}
 
   % Simple version without the comfort graphs
-  \hide{
+  %\hide{
     \generalEntry{Software Engineering Design, UML, Concurrency, Software Quality and Testing, JUnit, Linux, Git, Word Processing}
-  }
+  %}
 
   % Detailed version with skill level information
-  %\hide{
+  \hide{
     \generalEntry{\scriptsize{The following represent the skill set I have and my personal comfort level of using that skill} \\}
     \skillEntry{Software Engineering Design}{9}
     \skillEntry{UML}{9}
@@ -692,6 +774,6 @@
     \skillEntry{Linux}{10}
     \skillEntry{Git}{8}
     \skillEntry{Word Processing}{9}
-  %}
+  }
 
 \end{document}
