@@ -40,6 +40,11 @@
             menucolor=black,
             urlcolor=black]{hyperref}
 
+% Prevents splitting up entries (need \newpages though for bumping sections)
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
 %%%%%%%%%%%%%%%%%%%%%%
 %% PERSONAL DETAILS %%
 %%%%%%%%%%%%%%%%%%%%%%
@@ -92,7 +97,7 @@
 % [1]: null
 %
 \newcommand{\putPhone}[1]{
-  +1 (905) 924-5030
+  +1 (905) 924--5030
 }
 
 %%%%%%%%%%%%%%%%%%
@@ -184,7 +189,7 @@
 %
 \newcommand{\educationEntry}[6]{
   \begin{blockIndent}{}
-    \begin{minipage}[t]{0.645\linewidth}
+    \begin{minipage}[t]{0.710\linewidth}
       \raggedright
       #1 \\
       \textbf{#3} \\
@@ -192,7 +197,7 @@
         \equal{#6} {}}
         {} {#6 \\}
     \end{minipage}
-    \begin{minipage}[t]{0.335\linewidth}
+    \begin{minipage}[t]{0.260\linewidth}
       \raggedleft
       #2 \\
       #4 -- #5 \\
@@ -215,14 +220,14 @@
 %
 \newcommand{\researchEntry}[9]{
   \begin{blockIndent}{}
-    \begin{minipage}[t]{0.645\linewidth}
+    \begin{minipage}[t]{0.710\linewidth}
       \raggedright
       \textbf{#1}, #2 \\
       #4 \\
       #7 \\
       \textit{#8:} #9
     \end{minipage}
-    \begin{minipage}[t]{0.335\linewidth}
+    \begin{minipage}[t]{0.260\linewidth}
       \raggedleft
       #3 \\
       #5 -- #6
@@ -244,7 +249,7 @@
 %
 \newcommand{\teachingEntry}[8]{
   \begin{blockIndent}{}
-    \begin{minipage}[t]{0.645\linewidth}
+    \begin{minipage}[t]{0.710\linewidth}
       \raggedright
       \textbf{#1}, #2 \\
       Course Code: #4 \\
@@ -253,7 +258,7 @@
         \equal{#8} {}}
         {} {Responsibilities: #8 \\}
     \end{minipage}
-    \begin{minipage}[t]{0.335\linewidth}
+    \begin{minipage}[t]{0.260\linewidth}
       \raggedleft
       #3 \\
       #5 -- #6 \\
@@ -272,14 +277,14 @@
 %
 \newcommand{\academicAwardsEntry}[5]{
   \begin{blockIndent}{}
-    \begin{minipage}[t]{0.645\linewidth}
+    \begin{minipage}[t]{0.710\linewidth}
       \raggedright
       \textbf{#1}, #2 \\
       \ifthenelse{
         \equal{#5} {}}
         {} {#5 \\}
     \end{minipage}
-    \begin{minipage}[t]{0.335\linewidth}
+    \begin{minipage}[t]{0.260\linewidth}
     \raggedleft
       #3 -- #4
     \end{minipage}
@@ -337,7 +342,7 @@
 %
 \newcommand{\presentationEntry}[6]{
   \begin{blockIndent}{}
-    \begin{minipage}[t]{0.645\linewidth}
+    \begin{minipage}[t]{0.710\linewidth}
       \raggedright
       \ifthenelse{
         \equal{#6} {}}
@@ -345,7 +350,7 @@
       Event: #2 \\
       Summary: #5
     \end{minipage}
-    \begin{minipage}[t]{0.335\linewidth}
+    \begin{minipage}[t]{0.260\linewidth}
       \raggedleft
       #3 \\
       #4
@@ -364,14 +369,14 @@
 %
 \newcommand{\organizationInvolvementEntry}[5]{
   \begin{blockIndent}{}
-    \begin{minipage}[t]{0.645\linewidth}
+    \begin{minipage}[t]{0.710\linewidth}
       \raggedright
       \ifthenelse{
         \equal{#5} {}}
         {\textsc{#1}} {\href{#5}{\textsc{#1}}} \\
       Role: #2
     \end{minipage}
-    \begin{minipage}[t]{0.335\linewidth}
+    \begin{minipage}[t]{0.260\linewidth}
       \raggedleft
       #3 -- #4
     \end{minipage}
@@ -433,7 +438,7 @@
     {Masters of Science in \href{http://gradstudies.uoit.ca/EN/main/future\_students/masters\_programs/computerscience.html}{Computer Science}}
     {Sep. 2010}
     {Present}
-    {Cumulative GPA of 4.15 / 4.30.}
+    {Cumulative GPA of 4.18 / 4.30.}
 
   \educationEntry
     {\href{http://www.uoit.ca/}{\textbf{UOIT}}}
@@ -494,7 +499,17 @@
     {Teaching Assistant}
     {\href{http://www.uoit.ca/}{UOIT}}
     {Oshawa, Ontario, Canada}
-    {CSCI 1030U \textit{(Two Section)}}
+    {CSCI 3060U/ENGR 3980U \textit{(Two Sections)}}
+    {Jan. 2012}
+    {Apr. 2012}
+    {Software Quality}
+    {Introduced and demostrated various concepts on agile development and testing for software systems.}
+
+  \teachingEntry
+    {Teaching Assistant}
+    {\href{http://www.uoit.ca/}{UOIT}}
+    {Oshawa, Ontario, Canada}
+    {CSCI 1030U \textit{(Two Sections)}}
     {Sep. 2011}
     {Dec. 2011}
     {Introduction to Computer Science}
@@ -504,7 +519,7 @@
     {Teaching Assistant}
     {\href{http://www.uoit.ca/}{UOIT}}
     {Oshawa, Ontario, Canada}
-    {CSCI 2030U \textit{(Two Section)}}
+    {CSCI 2030U \textit{(Two Sections)}}
     {Jan. 2011}
     {Apr. 2011}
     {Programming Workshop}
@@ -549,7 +564,7 @@
     {\href{http://uoit.ca/}{UOIT}}
     {Sep. 2011}
     {Sep. 2012}
-    {Scholarship for graduate studies at UOIT. Recipients must have at least an 3.7 GPA.}
+    {Scholarship for graduate studies at UOIT. Requires a minimum 3.7 GPA.}
 
   \academicAwardsEntry
     {\href{http://gradstudies.uoit.ca/test/EN/main/future\_students/awards\_and\_funding/external\_awards/OGSInstitutional.html}{OGS - Institutional Competition}}
@@ -563,35 +578,45 @@
     {\href{http://uoit.ca/}{UOIT}}
     {Sep. 2010}
     {Sep. 2011}
-    {Scholarship for graduate studies at UOIT. Recipients must have at least an 3.7 GPA.}
+    {Scholarship for graduate studies at UOIT. Requires a minimum 3.7 GPA.}
 
   \academicAwardsEntry
     {\href{http://www.nserc-crsng.gc.ca/students-etudiants/ug-pc/usra-brpc_eng.asp}{NSERC -- Undergraduate Student Research Award}}
     {\href{http://uoit.ca/}{UOIT}}
     {May 2010}
     {Aug. 2010}
-    {Funding for undergraduate summer research at UOIT. Only 14 recipients at UOIT.}
+    {Funding for undergraduate research at UOIT. Only 14 recipients at UOIT.}
 
   \academicAwardsEntry
     {\href{http://www.nserc-crsng.gc.ca/students-etudiants/ug-pc/usra-brpc_eng.asp}{NSERC -- Undergraduate Student Research Award}}
     {\href{http://uoit.ca/}{UOIT}}
     {May 2009}
     {Aug. 2009}
-    {Funding for undergraduate summer research at UOIT. Only 14 recipients at UOIT.}
+    {Funding for undergraduate research at UOIT. Only 14 recipients at UOIT.}
 
   \academicAwardsEntry
     {President's List}
     {\href{http://uoit.ca/}{UOIT}}
     {Sep. 2008}
     {Apr. 2011}
-    {For attaining a semester GPA of at least 3.80/4.30 during a undergraduate degree.}
+    {For attaining a semester GPA of at least 3.80/4.30 (undergraduate).}
 
   %%%%%%%%%%%%%%%%%%
   %% PUBLICATIONS %%
   %%%%%%%%%%%%%%%%%%
   % The user's publications are displayed here.
   %
+  \newpage
   \section{Publications}
+
+  \publicationEntry
+    {\textbf{Kevin Jalbert} and Jeremy S. Bradbury}
+    {Predicting Mutation Score Using Source Code and Test Suite Metrics}
+    {In Proc. of the Workshop on Realizing Artificial Intelligence Synergies in Software Engineering (RAISE 2012)}
+    {pages 5}
+    {Zurich, Switzerland}
+    {Jun. 2012}
+    {http://kevinjalbert.com/public/files/publications/RAISE12.pdf}
 
   \publicationEntry
     {Jeremy S. Bradbury and \textbf{Kevin Jalbert}}
@@ -629,19 +654,11 @@
 
   \posterEntry
     {\textbf{Kevin Jalbert}, Cody-James LeBlanc, Christopher Forbes, Ramiro Liscano and Jeremy S. Bradbury}
-    {Eclipticon: Eclipse Plugin for Concurrency Testing (\textbf{Best Poster Award})}
+    {Eclipticon: Eclipse Plugin for Concurrency Testing}
     {In 2011 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
     {Markham, Ontario, Canada}
-    {Nov. 2011}
-    {}
-
-  \posterEntry
-    {\textbf{Kevin Jalbert}, David Kelk and Jeremy S. Bradbury}
-    {ARC: Automatic Repair of Java Concurrency Bugs}
-    {In 2011 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
-    {Markham, Ontario, Canada}
-    {Nov. 2011}
-    {}
+    {Nov. 2011. \textbf{Best poster award}}
+    {http://kevinjalbert.com/public/files/posters/CSER11-fall-eclipticon-poster.pdf}
 
   \posterEntry
     {\textbf{Kevin Jalbert} and Jeremy S. Bradbury}
@@ -654,42 +671,34 @@
   \posterEntry
     {\textbf{Kevin Jalbert} and Jeremy S. Bradbury}
     {A Tool for Automatically Repairing Concurrency Bugs}
-    {In Technology Showcase at the 20th Annual International Conference on Computer Science and Software Engineering (CASCON 2010)}
+    {In Technology Showcase at the 20th Annual International Conference on Computer Science and Software Engineering (CASCON 2010) \& the 2010 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
     {Markham, Ontario, Canada}
     {Nov. 2010}
-    {http://kevinjalbert.com/public/files/posters/CASCON10-poster.pdf}
+    {http://kevinjalbert.com/public/files/posters/CASCON10_CSER10-poster.pdf}
 
   \posterEntry
     {\textbf{Kevin Jalbert} and Jeremy S. Bradbury}
-    {A Tool for Automatically Repairing Concurrency Bugs}
-    {In 2010 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
-    {Markham, Ontario, Canada}
-    {Nov. 2010}
-    {http://kevinjalbert.com/public/files/posters/CSER10-fall-poster.pdf}
+    {Using Clone Detection to Identify Bugs in Concurrent Software}
+    {In Proc. of 26th IEEE International Conference on Software Maintenance (ICSM 2010)}
+    {Timi\c{s}oara, Romania}
+    {Jun. 2010}
+    {http://kevinjalbert.com/public/files/posters/ICSM10-poster.pdf}
 
   \posterEntry
     {\textbf{Kevin Jalbert} and Jeremy S. Bradbury}
     {Using Bug Patterns in the Regression Testing of Concurrent Software}
-    {In Technology Showcase at the 19th Annual International Conference on Computer Science and Software Engineering (CASCON 2009)}
+    {In Technology Showcase at the 19th Annual International Conference on Computer Science and Software Engineering (CASCON 2009) \& the 2009 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
     {Markham, Ontario, Canada}
     {Nov. 2009}
-    {http://kevinjalbert.com/public/files/posters/CASCON09-poster.pdf}
-
-  \posterEntry
-    {\textbf{Kevin Jalbert} and Jeremy S. Bradbury}
-    {Using Bug Patterns in the Regression Testing of Concurrent Software}
-    {In 2009 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
-    {Markham, Ontario, Canada}
-    {Nov. 2009}
-    {http://kevinjalbert.com/public/files/publications/CSER09-fall-poster.pdf}
+    {http://kevinjalbert.com/public/files/posters/CASCON09_CSER09-poster.pdf}
 
   %%%%%%%%%%%%%%%%%%%
   %% PRESENTATIONS %%
   %%%%%%%%%%%%%%%%%%%
   % The user's posters are displayed here.
   %
+  \hide{
   \section{Presentations}
-
   \presentationEntry
     {ARC: Automatic Repair of Concurrency Bugs}
     {In 2011 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
@@ -705,7 +714,7 @@
     {Jun. 2011}
     {Detailed and demonstrated an Eclipse plugin for testing multi--threaded Java programs}
     {http://wiki.eclipse.org/Eclipse_DemoCamps_Indigo_2011/Toronto}
-
+  }
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   %% ORGANIZATION INVOLVEMENTS %%
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -714,11 +723,18 @@
   \section{Organization Involvements}
 
   \organizationInvolvementEntry
+    {International Workshop on Mutation Analysis (Mutation 2012)}
+    {Sub-Reviewer}
+    {Feb. 2012}
+    {Mar. 2012}
+    {http://www.cs.ucl.ac.uk/mutation2012/}
+
+  \organizationInvolvementEntry
     {2011 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
     {Poster Session Co-organizer}
     {Oct. 2011}
     {Nov. 2011}
-    {}
+    {http://faculty.uoit.ca/bradbury/cser/}
 
   \organizationInvolvementEntry
     {Symposium on Search Based Software Engineering (SSBSE 2011)}
