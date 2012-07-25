@@ -17,10 +17,10 @@
 \documentclass[letterpaper,10pt,oneside]{article}
 \usepackage{ifthen}
 \usepackage{ulem}
-\usepackage[left=1in,
-            right=1in,
-            top=1in,
-            bottom=1in,
+\usepackage[left=0.75in,
+            right=0.75in,
+            top=0.75in,
+            bottom=0.75in,
             nohead,
             nofoot]{geometry}
 \usepackage[bookmarks,
@@ -110,14 +110,14 @@
 
 % Force a clean looking page
 \pagestyle{empty}
-\setlength{\parindent}{0cm}
+\setlength{\parindent}{0mm}
 
 % indenter(newenvironment)
 % Statement that returns the parindent back to 0cm, used with blockIndent.
 % [1]: null
 %
 \newenvironment{indenter}[1]{
-  \setlength{\parindent}{0cm}
+  \setlength{\parindent}{0mm}
 }
 
 % blockIndent(newenvironment)
@@ -126,8 +126,8 @@
 %
 \newenvironment{blockIndent}[1]{
   \begin{indenter}{}
-    \setlength{\parindent}{0.25cm}
-    \hangindent=0.25cm
+    \setlength{\parindent}{2.5mm}
+    \hangindent=2.5mm
 }{\end{indenter}}
 
 % putContact(newcommand)
@@ -150,10 +150,11 @@
 \newcommand{\putTitle}[1]{
   \normalsize
   \pdfbookmark{Curriculum Vitae}{Curriculum Vitae}{
-    \hspace{-0.5cm} \textsc{\Huge{\putName{}} \hfill \LARGE{\putWebsite{}}}\\
+    \hspace{-5mm} \textsc{\Huge{\putName{}} \hfill \LARGE{\putWebsite{}}}\\
   }
   \putContact{}
   \hrule
+  \vspace{1mm}
 }
 
 % section(renewcommand)
@@ -161,10 +162,10 @@
 % [1]: Section's title
 %
 \renewcommand{\section}[1]{
-  \vspace{3mm}
+  \vspace{2mm}
   \pdfbookmark{#1}{#1}{
-    \textsc{\Large{\underline{#1}}}
-    \vspace{3mm}
+    \textsc{\LARGE{#1}}
+    \vspace{1mm}
   }
 }
 
@@ -203,7 +204,7 @@
       #4 -- #5 \\
     \end{minipage}
   \end{blockIndent}
-  \vspace{0.5cm}
+  \vspace{5mm}
 }
 
 % researchEntry(newcommand)
@@ -233,7 +234,7 @@
       #5 -- #6
     \end{minipage}
   \end{blockIndent}
-  \vspace{0.5cm}
+  \vspace{5mm}
 }
 
 % teachingEntry(newcommand)
@@ -264,7 +265,7 @@
       #5 -- #6 \\
     \end{minipage}
   \end{blockIndent}
-  \vspace{0.5cm}
+  \vspace{5mm}
 }
 
 % academicAwardsEntry(newcommand)
@@ -289,7 +290,7 @@
       #3 -- #4
     \end{minipage}
   \end{blockIndent}
-  \vspace{0.5cm}
+  \vspace{5mm}
 }
 
 % publicationEntry(newcommand)
@@ -346,7 +347,7 @@
       #4
     \end{minipage}
   \end{blockIndent}
-  \vspace{0.5cm}
+  \vspace{5mm}
 }
 
 % organizationInvolvementEntry(newcommand)
@@ -371,7 +372,7 @@
       #3 -- #4
     \end{minipage}
   \end{blockIndent}
-  \vspace{0.5cm}
+  \vspace{5mm}
 }
 
 % skillEntry(newcommand)
