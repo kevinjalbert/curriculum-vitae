@@ -185,7 +185,7 @@
 % [2]: Region
 % [3]: Degree/diploma
 % [4]: Start date
-% [5]: End date
+% [5]: End date (optional)
 % [6]: Note/comment (optional)
 %
 \newcommand{\educationEntry}[6]{
@@ -201,7 +201,9 @@
     \begin{minipage}[t]{0.260\linewidth}
       \raggedleft
       #2 \\
-      #4 -- #5 \\
+      \ifthenelse{
+        \equal{#5} {}}
+        {#4} {#4 -- #5}
     \end{minipage}
   \end{blockIndent}
   \vspace{5mm}
@@ -214,24 +216,23 @@
 % [3]: Region
 % [4]: Position's title
 % [5]: Start date
-% [6]: End date
-% [7]: Colleagues (follow this format "title: name")
-% [8]: Research title
-% [9]: Research description
+% [6]: End date (optional)
+% [7]: Research description
 %
-\newcommand{\researchEntry}[9]{
+\newcommand{\researchEntry}[7]{
   \begin{blockIndent}{}
     \begin{minipage}[t]{0.710\linewidth}
       \raggedright
       \textbf{#1}, #2 \\
-      #4 \\
-      #7 \\
-      \textit{#8:} #9
+      \uline{#4} \\
+      #7
     \end{minipage}
     \begin{minipage}[t]{0.260\linewidth}
       \raggedleft
       #3 \\
-      #5 -- #6
+      \ifthenelse{
+        \equal{#6} {}}
+        {#5} {#5 -- #6}
     \end{minipage}
   \end{blockIndent}
   \vspace{5mm}
@@ -244,7 +245,7 @@
 % [3]: Region
 % [4]: Course code
 % [5]: Start date
-% [6]: End date
+% [6]: End date (optional)
 % [7]: Course title
 % [8]: Course description (optional)
 %
@@ -253,16 +254,17 @@
     \begin{minipage}[t]{0.710\linewidth}
       \raggedright
       \textbf{#1}, #2 \\
-      Course Code: #4 \\
-      \textit{#7} \\
+      \uline{#7} -- #4 \\
       \ifthenelse{
         \equal{#8} {}}
-        {} {Responsibilities: #8 \\}
+        {} {#8}
     \end{minipage}
     \begin{minipage}[t]{0.260\linewidth}
       \raggedleft
       #3 \\
-      #5 -- #6 \\
+      \ifthenelse{
+        \equal{#6} {}}
+        {#5} {#5 -- #6}
     \end{minipage}
   \end{blockIndent}
   \vspace{5mm}
@@ -273,7 +275,7 @@
 % [1]: Award/honor title
 % [2]: Institution's name where it was received
 % [3]: Start date
-% [4]: End date
+% [4]: End date (optional)
 % [5]: Notes/description (optional)
 %
 \newcommand{\academicAwardsEntry}[5]{
@@ -287,7 +289,9 @@
     \end{minipage}
     \begin{minipage}[t]{0.260\linewidth}
     \raggedleft
-      #3 -- #4
+      \ifthenelse{
+        \equal{#4} {}}
+        {#3} {#3 -- #4}
     \end{minipage}
   \end{blockIndent}
   \vspace{5mm}
@@ -298,7 +302,7 @@
 % [1]: Authors
 % [2]: Publication title
 % [3]: Proceedings
-% [4]: Location in Proceedings (ex: volume 4, pages 3 --10)
+% [4]: Location in Proceedings (ex: volume 4, pages 3--10)
 % [5]: Region
 % [6]: Date
 % [7]: PDF/website url (optional)
@@ -332,44 +336,55 @@
   \end{blockIndent}
 }
 
-  \begin{blockIndent}{}
-    \begin{minipage}[t]{0.710\linewidth}
-      \raggedright
-      \ifthenelse{
-        \equal{#6} {}}
-        {\textsc{#1}} {\href{#6}{\textsc{#1}}} \\
-      Event: #2 \\
-      Summary: #5
-    \end{minipage}
-    \begin{minipage}[t]{0.260\linewidth}
-      \raggedleft
-      #3 \\
-      #4
-    \end{minipage}
-  \end{blockIndent}
-  \vspace{5mm}
-}
-
 % organizationInvolvementEntry(newcommand)
 % Displays an entry about the user's involvement in an organization.
 % [1]: Organization title
 % [2]: Position title
 % [3]: Start date
-% [4]: End date
+% [4]: End date (optional}
 % [5]: Website url (optional)
-%
-\newcommand{\organizationInvolvementEntry}[5]{
+% [6]: Involvement (optional)
+\newcommand{\organizationInvolvementEntry}[6]{
   \begin{blockIndent}{}
     \begin{minipage}[t]{0.710\linewidth}
       \raggedright
       \ifthenelse{
         \equal{#5} {}}
-        {\textsc{#1}} {\href{#5}{\textsc{#1}}} \\
-      Role: #2
+        {\textbf{#1}} {\href{#5}{\textbf{#1}}} \\
+      \uline{#2}
+      \ifthenelse{
+        \equal{#6} {}}
+        {} {\\ #6}
     \end{minipage}
     \begin{minipage}[t]{0.260\linewidth}
       \raggedleft
-      #3 -- #4
+      \ifthenelse{
+        \equal{#4} {}}
+        {#3} {#3 -- #4}
+    \end{minipage}
+  \end{blockIndent}
+  \vspace{5mm}
+}
+
+% certificationEntry(newcommand)
+% Displays an entry about the user's certification.
+% [1]: Certification title
+% [2]: Acquired date
+% [3]: Expiration date (optional}
+% [4]: Website url (optional)
+\newcommand{\certificationEntry}[5]{
+  \begin{blockIndent}{}
+    \begin{minipage}[t]{0.710\linewidth}
+      \raggedright
+      \ifthenelse{
+        \equal{#4} {}}
+        {\textbf{#1}} {\href{#4}{\textbf{#1}}} \\
+    \end{minipage}
+    \begin{minipage}[t]{0.260\linewidth}
+      \raggedleft
+      \ifthenelse{
+        \equal{#3} {}}
+        {#2} {#2 -- #3}
     \end{minipage}
   \end{blockIndent}
   \vspace{5mm}
@@ -453,8 +468,6 @@
     {Graduate Research Assistant}
     {Aug. 2010}
     {Present}
-    {Supervisor: Dr. Jeremy S. Bradbury}
-    {Software Quality and Testing}
     {Working on research projects related to Concurrency, Model Checking and Software Metrics.}
 
   \researchEntry
@@ -464,8 +477,6 @@
     {Undergraduate Research Assistant}
     {May 2010}
     {Aug. 2010}
-    {Supervisor: Dr. Jeremy S. Bradbury}
-    {A Tool for Automatically Repairing Concurrency Bugs}
     {This research project focuses on the development of a new approach to automatically correct Java concurrency bugs using genetic algorithms.}
 
   \researchEntry
@@ -475,8 +486,6 @@
     {Undergraduate Research Assistant}
     {May 2009}
     {Aug. 2009}
-    {Supervisor: Dr. Jeremy S. Bradbury}
-    {Using Clone Detection to Identify Bugs in Concurrent Software}
     {This research project focuses on the development of a new approach for regression testing concurrent Java programs using clone detection of bug patterns.}
 
   %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -693,23 +702,39 @@
   \organizationInvolvementEntry
     {International Workshop on Mutation Analysis (Mutation 2012)}
     {Sub-Reviewer}
-    {Feb. 2012}
     {Mar. 2012}
+    {}
     {http://www.cs.ucl.ac.uk/mutation2012/}
+    {}
 
   \organizationInvolvementEntry
     {2011 Fall Meeting of the Consortium for Software Engineering Research (CSER)}
     {Poster Session Co-organizer}
-    {Oct. 2011}
     {Nov. 2011}
+    {}
     {http://faculty.uoit.ca/bradbury/cser/}
+    {}
 
   \organizationInvolvementEntry
     {Symposium on Search Based Software Engineering (SSBSE 2011)}
     {Sub-Reviewer}
-    {May. 2011}
     {Jun. 2011}
+    {}
     {http://www.ssbse.org/2011/}
+    {}
+
+  %%%%%%%%%%%%%%%%%%%%
+  %% CERTIFICATIONS %%
+  %%%%%%%%%%%%%%%%%%%%
+  % The user's certifications are displayed here.
+  %
+  \section{Certifications}
+
+  \certificationEntry
+    {UOIT -- Teaching Certificate }
+    {May. 2012}
+    {}
+    {http://tlc.apa.uoit.ca/programs/teaching-certificate/}
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%
   %% PROGRAMMING LANGUAGES %%
