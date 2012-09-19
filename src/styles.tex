@@ -1,0 +1,347 @@
+%%%%%%%%%%%%%%
+%% PACKAGES %%
+%%%%%%%%%%%%%%
+% The set of required packages to compile this LaTeX document.
+%
+\documentclass[letterpaper,10pt,oneside]{article}
+\usepackage{ifthen}
+\usepackage{ulem}
+\usepackage[left=0.75in,
+            right=0.75in,
+            top=0.75in,
+            bottom=0.75in,
+            nohead,
+            nofoot]{geometry}
+\usepackage[bookmarks,
+            pdftitle={Curriculum Vitae},
+            pdfauthor={Kevin Jalbert},
+            pdfsubject={},
+            pdfcreator={},
+            pdfproducer={},
+            pdfkeywords={},
+            pdfpagemode={},
+            pdfstartview=FitH,
+            colorlinks=true,
+            linkcolor=black,
+            anchorcolor=black,
+            citecolor=black,
+            filecolor=black,
+            menucolor=black,
+            urlcolor=black]{hyperref}
+
+% Prevents splitting up entries (need \newpages though for bumping sections)
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+
+%%%%%%%%%%%%%%%%%%
+%% MACROS/STYLE %%
+%%%%%%%%%%%%%%%%%%
+% To ease the insertion of information into the resume a set of function-like
+% commands exist. The information is passed into the command which is then
+% formated as desired. In addition there exist other helper commands.
+%
+
+% Force a clean looking page
+\pagestyle{empty}
+\setlength{\parindent}{0mm}
+
+% indenter(newenvironment)
+% Statement that returns the parindent back to 0cm, used with blockIndent.
+% [1]: null
+%
+\newenvironment{indenter}[1]{
+  \setlength{\parindent}{0mm}
+}
+
+% blockIndent(newenvironment)
+% Statements within this environment will be indented 1cm.
+% [1]: null
+%
+\newenvironment{blockIndent}[1]{
+  \begin{indenter}{}
+    \setlength{\parindent}{2.5mm}
+    \hangindent=2.5mm
+}{\end{indenter}}
+
+% putContact(newcommand)
+% Displays the contact information for the user (address, region, email and
+% phone) that have been acquire in the personal details section.
+% [1]: null
+%
+\newcommand{\putContact}[1]{
+  \begin{blockIndent}{}
+    \putAddress{} \hfill \textit{\putEmail{}} \\
+    \putRegion{} \hfill \putPhone{} \\
+  \end{blockIndent}
+}
+
+% putTitle(newcommand)
+% Displays the title of the CV (name, website, and contact information). The
+% Title is also bookmarked for quick access.
+% [1]: null
+%
+\newcommand{\putTitle}[1]{
+  \normalsize
+  \pdfbookmark{Curriculum Vitae}{Curriculum Vitae}{
+    \hspace{-5mm} \textsc{\Huge{\putName{}} \hfill \LARGE{\putWebsite{}}}\\
+  }
+  \putContact{}
+  \hrule
+  \vspace{1mm}
+}
+
+% section(renewcommand)
+% Displays the section's title, as well as placing a bookmark.
+% [1]: Section's title
+%
+\renewcommand{\section}[1]{
+  \vspace{2mm}
+  \pdfbookmark{#1}{#1}{
+    \textsc{\LARGE{#1}}
+    \vspace{1mm}
+  }
+}
+
+% generalEntry(newcommand)
+% Displays a general entry (a simple paragraph, or anything really)
+% [1]: Contents of the general entry
+%
+\newcommand{\generalEntry}[1]{
+  \begin{blockIndent}{}
+    #1
+  \end{blockIndent}
+  \vspace{5mm}
+}
+
+% educationEntry(newcommand)
+% Displays an entry about the user's educational background.
+% [1]: University/college's Name
+% [2]: Region
+% [3]: Degree/diploma
+% [4]: Start date
+% [5]: End date (optional)
+% [6]: Note/comment (optional)
+%
+\newcommand{\educationEntry}[6]{
+  \begin{blockIndent}{}
+    \begin{minipage}[t]{0.710\linewidth}
+      \raggedright
+      #1 \\
+      \textbf{#3} \\
+      \ifthenelse{
+        \equal{#6} {}}
+        {} {#6 \\}
+    \end{minipage}
+    \begin{minipage}[t]{0.260\linewidth}
+      \raggedleft
+      #2 \\
+      \ifthenelse{
+        \equal{#5} {}}
+        {#4} {#4 -- #5}
+    \end{minipage}
+  \end{blockIndent}
+  \vspace{5mm}
+}
+
+% researchEntry(newcommand)
+% Displays an entry about the user's research experiences.
+% [1]: Research group/affiliation
+% [2]: University/college's name
+% [3]: Region
+% [4]: Position's title
+% [5]: Start date
+% [6]: End date (optional)
+% [7]: Research description
+%
+\newcommand{\researchEntry}[7]{
+  \begin{blockIndent}{}
+    \begin{minipage}[t]{0.710\linewidth}
+      \raggedright
+      \textbf{#1}, #2 \\
+      \uline{#4} \\
+      #7
+    \end{minipage}
+    \begin{minipage}[t]{0.260\linewidth}
+      \raggedleft
+      #3 \\
+      \ifthenelse{
+        \equal{#6} {}}
+        {#5} {#5 -- #6}
+    \end{minipage}
+  \end{blockIndent}
+  \vspace{5mm}
+}
+
+% teachingEntry(newcommand)
+% Displays an entry about the user's teaching experiences.
+% [1]: Position's title
+% [2]: University/College's name
+% [3]: Region
+% [4]: Course code
+% [5]: Start date
+% [6]: End date (optional)
+% [7]: Course title
+% [8]: Course description (optional)
+%
+\newcommand{\teachingEntry}[8]{
+  \begin{blockIndent}{}
+    \begin{minipage}[t]{0.710\linewidth}
+      \raggedright
+      \textbf{#1}, #2 \\
+      \uline{#7} -- #4 \\
+      \ifthenelse{
+        \equal{#8} {}}
+        {} {#8}
+    \end{minipage}
+    \begin{minipage}[t]{0.260\linewidth}
+      \raggedleft
+      #3 \\
+      \ifthenelse{
+        \equal{#6} {}}
+        {#5} {#5 -- #6}
+    \end{minipage}
+  \end{blockIndent}
+  \vspace{5mm}
+}
+
+% academicAwardsEntry(newcommand)
+% Displays an entry about the user's academic awards and honors.
+% [1]: Award/honor title
+% [2]: Institution's name where it was received
+% [3]: Start date
+% [4]: End date (optional)
+% [5]: Notes/description (optional)
+%
+\newcommand{\academicAwardsEntry}[5]{
+  \begin{blockIndent}{}
+    \begin{minipage}[t]{0.710\linewidth}
+      \raggedright
+      \textbf{#1}, #2 \\
+      \ifthenelse{
+        \equal{#5} {}}
+        {} {#5 \\}
+    \end{minipage}
+    \begin{minipage}[t]{0.260\linewidth}
+    \raggedleft
+      \ifthenelse{
+        \equal{#4} {}}
+        {#3} {#3 -- #4}
+    \end{minipage}
+  \end{blockIndent}
+  \vspace{5mm}
+}
+
+% publicationEntry(newcommand)
+% Displays an entry about the user's publications.
+% [1]: Authors
+% [2]: Publication title
+% [3]: Proceedings
+% [4]: Location in Proceedings (ex: volume 4, pages 3--10)
+% [5]: Region
+% [6]: Date
+% [7]: PDF/website url (optional)
+%
+\newcommand{\publicationEntry}[7]{
+  \begin{blockIndent}{}
+    #1.
+    \ifthenelse{
+      \equal{#7} {}}
+      {\uline{``#2''}} {\href{#7}{\uline{``#2''}}},
+    \textit{#3}, #4, #5, #6. \\
+  \end{blockIndent}
+}
+
+% posterEntry(newcommand)
+% Displays an entry about the user's posters.
+% [1]: Authors
+% [2]: Poster/exhibit title
+% [3]: Proceedings
+% [4]: Region
+% [5]: Date
+% [6]: PDF/website url (optional)
+%
+\newcommand{\posterEntry}[6]{
+  \begin{blockIndent}{}
+    #1.
+    \ifthenelse{
+      \equal{#6} {}}
+      {\uline{``#2''}} {\href{#6}{\uline{``#2''}}},
+    \textit{#3}, #4, #5. \\
+  \end{blockIndent}
+}
+
+% organizationInvolvementEntry(newcommand)
+% Displays an entry about the user's involvement in an organization.
+% [1]: Organization title
+% [2]: Position title
+% [3]: Start date
+% [4]: End date (optional}
+% [5]: Website url (optional)
+% [6]: Involvement (optional)
+\newcommand{\organizationInvolvementEntry}[6]{
+  \begin{blockIndent}{}
+    \begin{minipage}[t]{0.710\linewidth}
+      \raggedright
+      \ifthenelse{
+        \equal{#5} {}}
+        {\textbf{#1}} {\href{#5}{\textbf{#1}}} \\
+      \uline{#2}
+      \ifthenelse{
+        \equal{#6} {}}
+        {} {\\ #6}
+    \end{minipage}
+    \begin{minipage}[t]{0.260\linewidth}
+      \raggedleft
+      \ifthenelse{
+        \equal{#4} {}}
+        {#3} {#3 -- #4}
+    \end{minipage}
+  \end{blockIndent}
+  \vspace{5mm}
+}
+
+% certificationEntry(newcommand)
+% Displays an entry about the user's certification.
+% [1]: Certification title
+% [2]: Acquired date
+% [3]: Expiration date (optional}
+% [4]: Website url (optional)
+\newcommand{\certificationEntry}[5]{
+  \begin{blockIndent}{}
+    \begin{minipage}[t]{0.710\linewidth}
+      \raggedright
+      \ifthenelse{
+        \equal{#4} {}}
+        {\textbf{#1}} {\href{#4}{\textbf{#1}}} \\
+    \end{minipage}
+    \begin{minipage}[t]{0.260\linewidth}
+      \raggedleft
+      \ifthenelse{
+        \equal{#3} {}}
+        {#2} {#2 -- #3}
+    \end{minipage}
+  \end{blockIndent}
+  \vspace{5mm}
+}
+
+% skillEntry(newcommand)
+% Displays an entry about the user's skill. The skill level represents the
+% user's level of comfort level of expertise is graphed out of a 10 scale.
+% [1]: Skill
+% [2]: Level of comfort out of 10 (whole numbers)
+%
+\newcommand{\skillEntry}[2]{
+  \begin{blockIndent}{}
+    \begin{tabular}{p{5cm} l}
+      \small{#1} & \rule{#2em}{1.75mm}\rule{#2em}{1.75mm} \tiny{#20\%}
+    \end{tabular}
+  \end{blockIndent}
+}
+
+% hide(newcommand)
+% Hides the contained statements (useful for tailoring a CV).
+% [1]: Statements to hide
+%
+\newcommand{\hide}[1]{}
