@@ -6,6 +6,7 @@
 \documentclass[letterpaper,10pt,oneside]{article}
 \usepackage{ifthen}
 \usepackage{ulem}
+\usepackage{enumitem}
 \usepackage[left=0.75in,
             right=0.75in,
             top=0.75in,
@@ -159,8 +160,8 @@
   \begin{blockIndent}{}
     \begin{minipage}[t]{0.710\linewidth}
       \raggedright
-      \textbf{#1}, #2 \\
-      \uline{#4} \\
+      \textbf{#4}, #2 \\
+      \uline{#1} \\
       #7
     \end{minipage}
     \begin{minipage}[t]{0.260\linewidth}
