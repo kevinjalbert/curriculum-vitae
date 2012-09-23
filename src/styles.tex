@@ -41,7 +41,7 @@
 %%%%%%%%%%%%%%%%%%
 % To ease the insertion of information into the resume a set of function-like
 % commands exist. The information is passed into the command which is then
-% formated as desired. In addition there exist other helper commands.
+% formatted as desired. In addition there exist other helper commands.
 %
 
 % Force a clean looking page
@@ -129,8 +129,8 @@
   \begin{blockIndent}{}
     \begin{minipage}[t]{0.710\linewidth}
       \raggedright
-      #1 \\
-      \textbf{#3} \\
+      \textbf{#1} \\
+      \uline{#3} \\
       \ifthenelse{
         \equal{#6} {}}
         {} {#6 \\}
@@ -207,15 +207,15 @@
   \vspace{5mm}
 }
 
-% academicAwardsEntry(newcommand)
-% Displays an entry about the user's academic awards and honors.
+% honorsAwardsEntry(newcommand)
+% Displays an entry about the user's awards and honors.
 % [1]: Award/honor title
 % [2]: Institution's name where it was received
 % [3]: Start date
 % [4]: End date (optional)
 % [5]: Notes/description (optional)
 %
-\newcommand{\academicAwardsEntry}[5]{
+\newcommand{\honorsAwardsEntry}[5]{
   \begin{blockIndent}{}
     \begin{minipage}[t]{0.710\linewidth}
       \raggedright
