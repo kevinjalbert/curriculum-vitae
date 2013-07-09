@@ -138,6 +138,32 @@
     \begin{minipage}[t]{0.260\linewidth}
       \raggedleft
       #2 \\
+      #4 -- #5
+    \end{minipage}
+  \end{blockIndent}
+  \vspace{5mm}
+}
+
+% workEntry(newcommand)
+% Displays an entry about the user's work experiences.
+% [1]: Company
+% [2]: Region
+% [3]: Position's title
+% [4]: Start date
+% [5]: End date (optional)
+% [6]: Position description
+%
+\newcommand{\workEntry}[6]{
+  \begin{blockIndent}{}
+    \begin{minipage}[t]{0.710\linewidth}
+      \raggedright
+      \textbf{#1} \\
+      \uline{#3} \\
+      #6
+    \end{minipage}
+    \begin{minipage}[t]{0.260\linewidth}
+      \raggedleft
+      #2 \\
       \ifthenelse{
         \equal{#5} {}}
         {#4} {#4 -- #5}
