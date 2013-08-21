@@ -24,3 +24,7 @@ This program takes advantage of [LaTeX](http://www.latex-project.org/ "LaTeX") /
 1. Download the source code and place it into a directory of choice
 2. Modify the .tex file to your own desire (should only need to adjust the personal details, and the content sections. Unless you want to add new sections.)
 2. View the actions you can perform (compiling/cleaning) by using the following command ```rake``` while in the root directory.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kevinjalbert/curriculum-vitae/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
